@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "988764788940",
+    "firebase_url": "https://loginforquickaid.firebaseio.com",
+    "project_id": "loginforquickaid",
+    "storage_bucket": "loginforquickaid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988764788940:android:a3fec59e888ad67f",
+        "android_client_info": {
+          "package_name": "com.lazycoder.quickaid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "988764788940-1m0k7iutbqmsbk91jnl9j689i43g7j9p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lazycoder.quickaid",
+            "certificate_hash": "799d62ed00c22c3a83f21f795d5f894c8c07bfa8"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDahGORBcdFelR057ro65yXbiova8IjKFI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "988764788940-0o63o0ci8gvteqvqffc28j9nefdkngbd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
