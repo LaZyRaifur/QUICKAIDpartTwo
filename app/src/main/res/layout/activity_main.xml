@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/rootLayout"
     tools:context=".MainActivity">
 
 
@@ -75,7 +76,6 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="6dp"
             android:background="@drawable/btn_sign_in_background"
-
             android:text="SIGN IN"
             android:textColor="@android:color/white"
             tools:ignore="Suspicious0dp" />
