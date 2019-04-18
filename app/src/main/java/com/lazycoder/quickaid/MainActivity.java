@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.multidex.MultiDex;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.lazycoder.quickaid.Model.User;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import dmax.dialog.SpotsDialog;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -38,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
     //04.04.19
     @Override
     protected void attachBaseContext(Context newBase) {
+
+        //17.04.19
+        MultiDex.install(this);
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
@@ -99,6 +104,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
 
                 dialog.dismiss();
+
+//                //radio button
+//                SpotsDialog waitingDialog = new SpotsDialog(MainActivity.this);
+//                waitingDialog.show();
+
+                //08.04.19
+                //set disable button sign in if is processing
+                btnSignIn.setEnabled(false);
+
                 //check validation
                 if (TextUtils.isEmpty(edtEmail.getText().toString())) {
 
@@ -118,18 +132,31 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
+
+                //radio button
+                android.app.AlertDialog waitingDialog = new SpotsDialog(MainActivity.this);
+                waitingDialog.show();
+
                 //Login
+                final android.app.AlertDialog finalWaitingDialog = waitingDialog;
+                final android.app.AlertDialog finalWaitingDialog1 = waitingDialog;
                 auth.signInWithEmailAndPassword(edtEmail.getText().toString(), edtPassword.getText().toString())
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
                             public void onSuccess(AuthResult authResult) {
+
+                                finalWaitingDialog.dismiss();
                                 startActivity(new Intent(MainActivity.this, Welcome.class));
                                 finish();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        finalWaitingDialog1.dismiss();
                         Snackbar.make(rootLayout, "Failed " + e.getMessage(), Snackbar.LENGTH_SHORT).show();
+
+                        //Active button
+                        btnSignIn.setEnabled(true);
 
                     }
                 });
